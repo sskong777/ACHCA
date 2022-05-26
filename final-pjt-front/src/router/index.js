@@ -21,10 +21,6 @@ import ProfileView from "@/views/account/ProfileView.vue";
 import NotFound404 from "../views/NotFound404.vue";
 
 Vue.use(VueRouter);
-  mode: "history",
-  scrollBehavior() { 
-    return { x: 0, y: 0 } 
-  },
 const routes = [
   /*
   accounts

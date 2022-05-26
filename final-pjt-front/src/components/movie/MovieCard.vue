@@ -1,12 +1,16 @@
 <template>
   <div class="card bg-black" style="width: 18rem">
-    <a :href="go_deail" class="movie_link text-white">
+    <router-link
+      :to="{ name: 'movie', params: { moviePk: movie.pk } }"
+      class="movie_link"
+      style="color: white"
+    >
       <img :src="posterUrl" class="card-img-top" alt="..." />
       <div class="card-body">
         <h3 class="">{{ movie.title }}</h3>
         <!-- <p class="card-text">{{ movie.overview }}</p> -->
       </div>
-    </a>
+    </router-link>
   </div>
 </template>
 

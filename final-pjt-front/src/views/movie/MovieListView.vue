@@ -2,10 +2,10 @@
   <div id="infinite-list" class="pt-5">
     <h1 class="text-white" id="top">Movie</h1>
     <search-bar></search-bar>
-    <a href="/movies/genres" style="text-decoration: none">
+    <router-link :to="{ name: 'genre' }" class="movie_link">
       <v-icon dark> mdi-plus </v-icon>
       <p class="h5" style="color: crimson">Go genres</p>
-    </a>
+    </router-link>
     <div class="home row row-cols-4 justify-content-center mt-5">
       <movie-card
         v-for="movie in movs"
