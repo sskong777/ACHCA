@@ -14,5 +14,6 @@ urlpatterns = [
     path('<int:movie_pk>/reviews/<int:review_pk>/', views.review_update_or_delete),
     ## 추가
     path('<int:movie_pk>/favorite/', views.favorite_movie),
-    
+    path('get_movies/', views.movie_paginator),
+
 ]

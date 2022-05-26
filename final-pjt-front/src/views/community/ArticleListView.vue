@@ -1,5 +1,5 @@
 <template v-slot:default>
-  <div>
+  <div id="top">
     <img
       src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/254/7329279254_4f67787a-afe9-4bda-8c74-90a88f6ddf78.png?cb=1653357128
       "
@@ -7,9 +7,10 @@
       width="300"
       height="200"
       class="my-5"
+      
     />
     <hr />
-    <h1>Community</h1>
+    <h1 >Community</h1>
 
     <div class="container" align="right">
       <p v-if="isLoggedIn">
@@ -70,10 +71,21 @@
           </tbody>
         </template>
       </v-simple-table>
-      <v-pagination
-      
-      ></v-pagination>
     </div>
+
+    <v-fab-transition>
+      <v-btn
+        color="red darken-3"
+        dark
+        fab
+        fixed
+        bottom
+        right
+        @click="$vuetify.goTo('#top', { duration: 500, offset: 0 })"
+      >
+        <v-icon large>mdi-menu-up</v-icon>
+      </v-btn>
+    </v-fab-transition>
   </div>
 </template>
 

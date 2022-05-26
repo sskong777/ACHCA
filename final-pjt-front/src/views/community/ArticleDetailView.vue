@@ -9,9 +9,9 @@
       </v-card-text>
       <v-card-text class="py-0">
         <p align="right" class="py-0">
-          작성: {{ article.created_at }}
+          작성: {{ created_date }}
           <br />
-          수정: {{ article.updated_at }}
+          수정: {{ updated_date }}
         </p>
       </v-card-text>
 
@@ -62,6 +62,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import dayjs from "dayjs";
 import CommentList from "@/components/community/CommentList.vue";
 
 export default {
@@ -76,6 +77,12 @@ export default {
     ...mapGetters(["isAuthor", "article"]),
     likeCount() {
       return this.article.like_users?.length;
+    },
+    created_date() {
+      return dayjs(this.article.created_at).format("MMM D, YYYY h:mm A");
+    },
+    updated_date() {
+      return dayjs(this.article.updated_at).format("MMM D, YYYY h:mm A");
     },
   },
   methods: {

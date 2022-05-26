@@ -154,7 +154,7 @@ nav.fill ul li a:after {
   content: ".";
   color: transparent;
   background: crimson;
-  height: 1px;
+  height: 5px;
 }
 nav.stroke ul li a:hover:after {
   width: 100%;

@@ -1,7 +1,9 @@
+from unittest import result
 from django.shortcuts import render,get_list_or_404,get_object_or_404, redirect
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
+from rest_framework.pagination import PageNumberPagination
 from .models import Movie, Review, Actor
 from .serializers.movie import ActorSerializer, MovieListSerializer, MovieSerializer, ReviewSerializer
 from rest_framework import serializers
@@ -11,25 +13,32 @@ from django.db.models.functions import Coalesce
 @api_view(['GET'])
 def movie_list(request):
     movies = get_list_or_404(Movie)
-    movies = Movie.objects.annotate(
-        reviews_rank_avg = Avg('reviews__rank', distinct=True)
-    ).all()
+
+
+    # movies = Movie.objects.annotate(
+    #     reviews_rank_avg = Avg('reviews__rank', distinct=True)
+    # ).all()
+
+
     serializer = MovieListSerializer(movies, many=True)
     return Response(serializer.data)
 
 
 @api_view(['GET'])
 def movie_detail(request,movie_pk):
-    # movie = get_object_or_404(Movie, pk=movie_pk)
-    movie = Movie.objects.annotate(
-        reviews_rank_avg = Avg('reviews__rank', distinct=True)
-    ).get(pk=movie_pk)
+    movie = get_object_or_404(Movie, pk=movie_pk)
+
+
+    # movie = Movie.objects.annotate(
+    #     reviews_rank_avg = Avg('reviews__rank', distinct=True)
+    # ).get(pk=movie_pk)
+
+
     # movie = Movie.objects\
     #     .annotate(
     #         reviews_rank_avg = Avg(
     #         Review.objects.filter(pk=movie_pk).values('rank')))
     # print(movie)
-    print(movie)
     serializer =  MovieSerializer(movie)
     return Response(serializer.data)
 
@@ -68,7 +77,21 @@ def recommended(request):
     ).all().order_by('-favorite_count')[:10]
     serializer3 = MovieListSerializer(top_user_favorite_movies,many=True)
 
-    return Response([serializer1.data, serializer2.data, serializer3.data])
+
+    
+    popularity_100 = Movie.objects.all().order_by('-popularity')[:200]
+    recent_100 = Movie.objects.all().order_by('-release_date')[:200]
+    sum_movies = (popularity_100 | recent_100).order_by('-vote_avg')[:10]
+    # print(sum_movies)
+    # print(len(sum_movies))
+    serializer4 = MovieListSerializer(sum_movies,many=True)
+    
+
+
+
+    # random_movies = random.sample(Movie.objects.all(),10)
+    # print(random_movies)
+    return Response([serializer1.data, serializer2.data, serializer3.data, serializer4.data])
 
 
 
@@ -145,3 +168,14 @@ def follow_actor(request, actor_pk):
         actor.followed_users.add(user)
         serializer = ActorSerializer(actor)
         return Response(serializer.data)
+
+
+@api_view(['GET'])
+def movie_paginator(request):
+    movies = get_list_or_404(Movie)
+    paginator =PageNumberPagination()
+    paginator.page_size = 12
+    results = paginator.paginate_queryset(movies, request)
+
+    serializer = MovieListSerializer(results, many=True)
+    return paginator.get_paginated_response(serializer.data)

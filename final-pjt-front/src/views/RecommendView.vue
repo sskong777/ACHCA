@@ -34,11 +34,11 @@
       >
         <figure>
           <router-link
-            :to="{ name: 'movie', params: { moviePk: recoMovies[0][idx].id } }"
+            :to="{ name: 'movie', params: { moviePk: recoMovies[0][idx].pk } }"
             class="movie_link"
           >
             <img
-              :src="`https://image.tmdb.org/t/p/original/${recoMovies[0][idx].poster_path}`"
+              :src="`https://image.tmdb.org/t/p/original/${recoMovies[3][idx].poster_path}`"
               alt="..."
             />
           </router-link>
@@ -78,7 +78,7 @@
       >
         <figure>
           <router-link
-            :to="{ name: 'movie', params: { moviePk: recoMovies[1][idx].id } }"
+            :to="{ name: 'movie', params: { moviePk: recoMovies[1][idx].pk } }"
             class="movie_link"
           >
             <img
@@ -108,7 +108,7 @@
       >
         <figure>
           <router-link
-            :to="{ name: 'movie', params: { moviePk: recoMovies[2][idx].id } }"
+            :to="{ name: 'movie', params: { moviePk: recoMovies[2][idx].pk } }"
             class="movie_link"
           >
             <img
@@ -119,6 +119,38 @@
         </figure>
       </slide>
     </carousel-3d>
+
+    <h1 class="mt-5 pt-5">Attraction2</h1>
+    <h4>최신 인기 영화(평점순)</h4>
+    <carousel-3d
+      :disable3d="true"
+      :space="365"
+      :clickable="false"
+      :controls-visible="true"
+      :width="400"
+      :height="580"
+    >
+      <slide
+        v-for="(movie, idx) in Object.keys(recoMovies[3]).length"
+        :key="idx"
+        :index="idx"
+      >
+        <figure>
+          <router-link
+            :to="{ name: 'movie', params: { moviePk: recoMovies[3][idx].pk } }"
+            class="movie_link"
+          >
+            <img
+              :src="`https://image.tmdb.org/t/p/original/${recoMovies[3][idx].poster_path}`"
+              alt="..."
+            />
+          </router-link>
+        </figure>
+      </slide>
+    </carousel-3d>
+
+
+  <!-- {{recoMovies[3]}} -->
   </div>
 </template>
 

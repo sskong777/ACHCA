@@ -24,7 +24,7 @@ export default {
   components: { ReviewListForm, ReviewListItem },
   props: { reviews: Array },
   computed: {
-    ...mapGetters(["movies", "isLoggedIn"]),
+    ...mapGetters(["isLoggedIn"]),
   },
 };
 </script>

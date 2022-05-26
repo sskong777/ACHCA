@@ -1,11 +1,12 @@
 <template>
   <div class="account-error-list">
     <p v-for="(errors, field) in authError" :key="field">
-      {{ field }}
+      <!-- {{ field }} -->
       <ul>
-        <li v-for="(error, idx) in errors" :key="idx">
-          {{ error }}
-        </li>
+        <div v-for="(error, idx) in errors" :key="idx">
+          <!-- {{ error }} -->
+          등록되지 않은 아이디이거나 아이디 또는 비밀번호를 잘못 입력했습니다.
+        </div>
       </ul>
     </p>
 

@@ -12,6 +12,7 @@ import MovieDetailView from "@/views/movie/MovieDetailView.vue";
 import RecommendView from "@/views/RecommendView";
 import RecommendTheaters from "@/views/RecommendTheaters";
 import ActorProfile from "@/views/movie/ActorProfile";
+import GenresView from "@/views/movie/GenresView";
 
 import LoginView from "@/views/account/LoginView.vue";
 import LogoutView from "@/views/account/LogoutView.vue";
@@ -20,7 +21,10 @@ import ProfileView from "@/views/account/ProfileView.vue";
 import NotFound404 from "../views/NotFound404.vue";
 
 Vue.use(VueRouter);
-
+  mode: "history",
+  scrollBehavior() { 
+    return { x: 0, y: 0 } 
+  },
 const routes = [
   /*
   accounts
@@ -66,6 +70,11 @@ const routes = [
     path: "/recommende/:username", // Home
     name: "movieRecommend",
     component: RecommendView,
+  },
+  {
+    path: "/movies/genres",
+    name: "genre",
+    component: GenresView,
   },
   {
     path: "/theater", // Home

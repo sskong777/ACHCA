@@ -1,14 +1,18 @@
 <template>
   <v-col style="" cols="6" sm="4" md="3" lg="2">
-    <v-item v-slot="{ active, toggle }">
-      <v-img :src="photoUrl" height="15rem" class="text-right pa-2">
-        <v-btn icon dark @click="toggle">
-          <v-icon>
-            {{ active ? "mdi-heart" : "mdi-heart-outline" }}
-          </v-icon>
-        </v-btn>
-      </v-img>
-    </v-item>
+    <!-- <v-item v-slot="{ active, toggle }"> -->
+    <v-img :src="photoUrl" height="15rem" class="text-right pa-2">
+      <v-btn icon dark>
+        <router-link
+          style="color: white"
+          class="text-decoration-none"
+          :to="{ name: 'actorProfile', params: { actorPk: actor.pk } }"
+        >
+          <v-icon> mdi-heart </v-icon>
+        </router-link>
+      </v-btn>
+    </v-img>
+    <!-- </v-item> -->
     <router-link
       class="text-decoration-none"
       :to="{ name: 'actorProfile', params: { actorPk: actor.pk } }"
@@ -26,9 +30,21 @@ export default {
   props: {
     actor: Object,
   },
+  data() {
+    return {
+      active: true,
+    };
+  },
   computed: {
     photoUrl() {
       return `https://image.tmdb.org/t/p/w500/${this.actor.img_key}`;
+    },
+    activeIcon() {
+      if (this.currentUser) {
+        return true;
+      } else {
+        return false;
+      }
     },
   },
 };

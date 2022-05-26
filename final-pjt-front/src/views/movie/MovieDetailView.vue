@@ -12,119 +12,134 @@
     </div>
     <!-- {{ movie }} -->
     <!-- <div style="position: absolute;"> -->
-    <div class="d-inline-flex">
-      <div class="row">
-        <div>
-          <div class="grow-1 col">
-            <p class="text-left h1 m-2">{{ movie.title }}</p>
-            <div class="d-flex grow-1 m-2">
-              <div id="genre_tag">
+    <p class="text-left h1 m-2">{{ movie.title }}</p>
+    <div class="d-flex justify-content-left">
+      <div class="d-inline-flex justify-content-left">
+        <div class="">
+          <div class="justify-content-left">
+            <div class="" width="60%">
+              <div class="m-2 d-flex">
+                <div id="genre_tag" class="">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="2rem"
+                    fill="currentColor"
+                    class="bi bi-tags-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2zm3.5 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
+                    />
+                    <path
+                      d="M1.293 7.793A1 1 0 0 1 1 7.086V2a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l.043-.043-7.457-7.457z"
+                    />
+                  </svg>
+                  <p class="mini-font h5">Genres :</p>
+                </div>
+                <div
+                  class="mx-1"
+                  v-for="genre in movie.genres"
+                  :key="genre.name"
+                >
+                  <p class="genres" style="font-size: 1.75em; color: grey">
+                    #{{ genre.name }},
+                  </p>
+                </div>
+              </div>
+              <div class="d-flex mx-2 my-3 align-items-start">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
+                  width="1.3rem"
                   fill="currentColor"
-                  class="bi bi-tags-fill"
+                  class="bi bi-star-fill me-1"
                   viewBox="0 0 16 16"
                 >
                   <path
-                    d="M2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2zm3.5 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"
-                  />
-                  <path
-                    d="M1.293 7.793A1 1 0 0 1 1 7.086V2a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l.043-.043-7.457-7.457z"
+                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
                   />
                 </svg>
-                <p class="mini-font h6">Genres :</p>
-              </div>
-              <div class="mx-1" v-for="genre in movie.genres" :key="genre.name">
-                <p class="genres mini-font">{{ genre.name }},</p>
-              </div>
-            </div>
-            <div class="d-flex mx-2 my-3 mini-font">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-star-fill me-1"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                />
-              </svg>
-              <div class="me-3">{{ movie.vote_avg }}</div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="currentColor"
-                class="bi bi-star-fill me-1"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
-                />
-              </svg>
-              <div class="me-2" id="user_rank">
-                {{ movie.reviews_rank_avg }}
-              </div>
-            </div>
-            <!--  -->
-            <div class="m-2">
-              <div class="d-flex my-5">
+                <p class="h6 pe-3">{{ movie.vote_avg }}</p>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
+                  width="1.3rem"
                   fill="currentColor"
-                  class="bi bi-calendar4-week me-"
+                  class="bi bi-star-fill me-1"
                   viewBox="0 0 16 16"
                 >
                   <path
-                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"
-                  />
-                  <path
-                    d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-2 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"
+                    d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"
                   />
                 </svg>
-                <strong
-                  ><h5 class="mini-font">{{ movie.release_date }}</h5></strong
-                >
+                <div class="me-2" id="user_rank">
+                  <p class="h6">{{ rankAvg }}</p>
+                </div>
               </div>
+              <!--  -->
+              <div class="m-2">
+                <div class="d-flex my-5 align-items-start">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1.5rem"
+                    fill="currentColor"
+                    class="bi bi-calendar4-week me-2"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM2 2a1 1 0 0 0-1 1v1h14V3a1 1 0 0 0-1-1H2zm13 3H1v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5z"
+                    />
+                    <path
+                      d="M11 7.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-2 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"
+                    />
+                  </svg>
+                  <strong
+                    ><p class="h6">{{ date }}</p></strong
+                  >
+                </div>
+              </div>
+              <!--  -->
+              <div class="m-2">
+                <div class="d-flex">
+                  <p class="h3">DIRECTOR</p>
+                </div>
+                <div class="d-flex text-align-center">
+                  <strong
+                    ><p class="h4" style="text-align: center">
+                      {{ movie.director }}
+                    </p></strong
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="d-flex my-2 medium-font">
+              <v-btn
+                class="align-items-start"
+                v-if="like"
+                @click="favoriteMovie(moviePk)"
+                icon
+                color="red"
+              >
+                <v-icon>mdi-heart</v-icon>
+              </v-btn>
+              <v-btn
+                class="align-items-start"
+                v-if="!like"
+                icon
+                color="grey"
+                @click="favoriteMovie(moviePk)"
+              >
+                <v-icon>mdi-heart</v-icon>
+              </v-btn>
+              <p class="h5" style="display: table-cell">
+                {{ favoriteCount }}
+              </p>
             </div>
             <!--  -->
-            <div class="m-2">
-              <div class="d-flex">
-                <p class="h4">DIRECTOR</p>
-              </div>
-              <div class="d-flex">
-                <strong
-                  ><p class="medium-font">{{ movie.director }}</p></strong
-                >
-              </div>
-            </div>
           </div>
-          <!--  -->
-        </div>
-      </div>
-      <div id="poster" style="">
-        <div>
-          <img :src="posterUrl" width="100%" alt="..." />
         </div>
       </div>
     </div>
     <div>
       <!-- </div> -->
-    </div>
-    <div class="d-flex m-2 medium-font">
-      <v-btn v-if="like" @click="favoriteMovie(moviePk)" icon color="red">
-        <v-icon large>mdi-heart</v-icon>
-      </v-btn>
-      <v-btn v-if="!like" icon color="grey" @click="favoriteMovie(moviePk)">
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-      <p class="">{{ favoriteCount }}</p>
     </div>
     <div class="my-3">
       <v-row id="group">
@@ -175,7 +190,9 @@
                 alt=""
               />
               <div class="card-body">
-                <p class="medium-font" id="actorName">{{ actor.actor_name }}</p>
+                <p class="" style="font-size: 1.2rem" id="actorName">
+                  {{ actor.actor_name }}
+                </p>
               </div>
             </div>
           </router-link>
@@ -194,9 +211,16 @@
       </router-link>
     </div>
   </div> -->
-    <div v-show="overviewCheck">
-      <div class="m-4">
-        <h6 class="lh-lg text-start">{{ movie.overview }}</h6>
+    <div v-show="overviewCheck" class="cols-12 justify-content-center">
+      <img
+        style="pointer-events: none"
+        class="col-12 col-sm-8 col-md-6 col-lg-4"
+        :src="posterUrl"
+        width="90%"
+        alt="..."
+      />
+      <div class="m-4 col-12 d-flex justify-content-center">
+        <p class="lh-lg text-start h6 col-12 col-sm-10">{{ movie.overview }}</p>
       </div>
     </div>
 
@@ -215,6 +239,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import dayjs from "dayjs";
 import ReviewList from "@/components/movie/ReviewList.vue";
 
 export default {
@@ -230,7 +255,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["movie", "reviewAvg", "currentUser"]),
+    ...mapGetters(["movie", "currentUser"]),
     checkOverview() {
       return this.overviewCheck;
     },
@@ -260,6 +285,20 @@ export default {
       } else {
         return false;
       }
+    },
+    rankAvg() {
+      if (!this.movie.reviews?.length) {
+        return "no review";
+      } else {
+        let num = 0;
+        this.movie.reviews.forEach(function (review) {
+          num += review.rank;
+        });
+        return (num / this.movie.reviews?.length).toFixed(1);
+      }
+    },
+    date() {
+      return dayjs(this.movie.release_date).format("MMMM D, YYYY");
     },
     // makeKey () {
     //   return Object.keys(this.movie.actors)
